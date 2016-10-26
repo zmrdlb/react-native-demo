@@ -18,12 +18,7 @@
      constructor(props){
          super(props);
          var ds = new ListView.DataSource({
-             rowHasChanged: (r1,r2) => {
-                 if(r1.imgsrc !== r2.imgsrc){
-                     return true;
-                 }
-                 return false;
-             },
+             rowHasChanged: (r1,r2) => r1 !== r2,
              sectionHeaderHasChanged: (s1,s2) => s1 !== s2
          });
          //this.truthimg = require('../static/common/listimg.jpg');
@@ -127,7 +122,7 @@
          return (
              <TouchableHighlight onPress={()=>{
                  highlightRow(sectionId,rowId);
-             }}>
+             }} key={`${sectionId}-${rowId}`}>
                  <View style={styles.row}>
                     <Image source={this.defaultimg} style={styles.img}>
                         <Image source={{uri: rowData.imgsrc}} style={styles.img} />
