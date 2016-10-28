@@ -35,7 +35,7 @@ http.createServer((req,res) => {
                 for(var i = 0; i < 10; i++){
                     dataBlob.push({
                        txt: 'row data '+ rowIndex,
-                       imgsrc: 'https://facebook.github.io/react/img/logo_og.png',
+                       imgsrc: 'https://facebook.github.io/react/img/logo_og.png'
                     });
                     rowIndex++;
                 }

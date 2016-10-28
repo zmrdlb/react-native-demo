@@ -21,8 +21,7 @@
              rowHasChanged: (r1,r2) => r1 !== r2,
              sectionHeaderHasChanged: (s1,s2) => s1 !== s2
          });
-         //this.truthimg = require('../static/common/listimg.jpg');
-         //this.truthimg1 = {uri: 'http://img5.duitang.com/uploads/item/201411/14/20141114224618_KnXet.jpeg'};
+         //如果是http协议，react native都不发起请求了。但是http的接口还是请求的啊。这个是在ios上测试的结果
          this.truthimg1 = 'https://facebook.github.io/react/img/logo_og1.png';
          this.truthimg2 = 'https://facebook.github.io/react/img/logo_og.png';
          this.defaultimg = require('../static/common/duola.jpg');
