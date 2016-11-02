@@ -39,6 +39,15 @@ http.createServer((req,res) => {
                     });
                     rowIndex++;
                 }
+                // setTimeout(()=>{
+                //     res.setHeader('Content-Type','application/json');
+                //     res.writeHead(200);
+                //     res.end(JSON.stringify({
+                //         code: 'A0002',
+                //         data: dataBlob
+                //         //errmsg: '接口返回的错误信息'
+                //     }),'utf8');
+                // },1000);
                 res.setHeader('Content-Type','application/json');
                 res.writeHead(200);
                 res.end(JSON.stringify({

@@ -10,6 +10,7 @@ import {
 import Mytext from '../comp/mytext';
 import Link from '../comp/link';
 import BottomSelector from '../comp/bottomSelector';
+import Tabbar from '../comp/tabbar';
 
 const styles = StyleSheet.create({
   welcome: {
@@ -30,13 +31,16 @@ export default class Main extends Component {
     render() {
         const gstyle = this.props.globalstyle;
         return (
-              <View style={gstyle.layCenterCon}>
-                  <Mytext style={[gstyle.layCenterSection,styles.welcome]}>Welcome to ZMRApp</Mytext>
-                  <Mytext style={[gstyle.layCenterSection]}>用户名：{this.state.username}</Mytext>
-                  <Link style={[gstyle.layCenterSection]}
-                      onPress={this._onPress.bind(this)}>点我跳转到个人主页
-                  </Link>
-                  <BottomSelector ref="bottomSelector" navigator={this.props.navigator} itemclickCal={this.onSelectorItemClick.bind(this)} />
+              <View style={{flex: 1}}>
+                  <View style={gstyle.layCenterCon}>
+                      <Mytext style={[gstyle.layCenterSection,styles.welcome]}>Welcome to ZMRApp</Mytext>
+                      <Mytext style={[gstyle.layCenterSection]}>用户名：{this.state.username}</Mytext>
+                      <Link style={[gstyle.layCenterSection]}
+                          onPress={this._onPress.bind(this)}>点我跳转到个人主页
+                      </Link>
+                      <BottomSelector ref="bottomSelector" navigator={this.props.navigator} itemclickCal={this.onSelectorItemClick.bind(this)} />
+                  </View>
+                  <Tabbar curtab="home"></Tabbar>
               </View>
         );
     }

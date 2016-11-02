@@ -39,7 +39,7 @@ class AwesomeProject extends Component {
 				initialRoute = {{name: 'main'}}
 				renderScene = {(route,navigator) => {
                       let item = AwesomeProject._compMap[route.name];
-                      Util.merge(route,item,false);
+                      Util.merge(route,item,false,false);
     					let Comp = item.comp;
     					return (
                               <View style={GlobalStyle.root}>

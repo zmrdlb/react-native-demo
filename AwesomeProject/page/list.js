@@ -9,10 +9,11 @@
    Text,
    ListView,
    RefreshControl,
-   TouchableHighlight
+   TouchableHighlight,
+   Alert
  } from 'react-native';
  import Util from '../common/util';
- import Io from '../common/io';
+ import Model from '../common/model';
 
  export default class List extends Component {
      constructor(props){
@@ -25,8 +26,9 @@
          this.truthimg1 = 'https://facebook.github.io/react/img/logo_og1.png';
          this.truthimg2 = 'https://facebook.github.io/react/img/logo_og.png';
          this.defaultimg = require('../static/common/duola.jpg');
-         this.initdata();
 
+         this.loading = false;
+         this.listsuccess = false; //list渲染是否成功
          this.state = {
              ds: ds,
              refreshing: false, //是否显示下拉刷新指示器
@@ -34,9 +36,17 @@
              endloading: false, //下拉刷新数据是否正在请求
              imgrender: {}
          };
+
+         this.initdata();
      }
      initdata() {
-         this._data = {};
+         if(this._data == undefined){
+             this._data = {};
+         }else{
+            //  for(var sectionId in this._data){
+            //      delete this._data[sectionId];
+            //  }
+         }
          this.rowIndex = 0;
          this.sectionIndex = 0;
          this.imgrender = {};
@@ -79,25 +89,32 @@
      }
      //获取数据
      getData(){
-         Io.request({
-             request: {
-                 method: 'POST'
-             },
-             url: 'http://127.0.0.1:8000/listdata',
+         if(this.loading){
+             return;
+         }
+         this.loading = true;
+         console.log('getdata');
+         Model.listdata({
              data: {
                  username: 'zmr',
                  sex: '女'
              },
              success: function(list){
+                 console.log(list);
                  this.onDataArrived(list);
+                 this.listsuccess = true;
+             }.bind(this),
+             complete: function(){
                  var nowstate = {
                      refreshing: false,
                      endloading: false
                  };
+                 this.setState(nowstate);
                  if(!this.state.firstRender){
                      nowstate.firstRender = true;
                  }
                  this.setState(nowstate);
+                 this.loading = false;
              }.bind(this)
          });
         //  setTimeout(() => {
@@ -148,6 +165,10 @@
          );
      }
      onEndReached(){
+         if(!this.listsuccess || this.loading){
+             return;
+         }
+         console.log('onEndReached');
          this.setState({
              endloading: true
          });
@@ -157,6 +178,10 @@
       * 此处默认做了防爆下拉：当refreshing为true，触发了一次onRefresh，期间再次下来，也不会重复触发onRefresh
       */
      onRefresh() {
+         if(this.loading){
+             return;
+         }
+         console.log('onRefresh');
          this.setState({
              refreshing: true
          });

@@ -1,10 +1,6 @@
 /**
  * io请求的一些公共配置
  */
- import {
-   Alert
- } from 'react-native';
-
  const that = {
     /**
      * 对于接口返回的业务错误进行统一处理
@@ -13,12 +9,12 @@
     fail: {
         funname: 'fail', //当发生业务错误的时候，调用的方法名
         filter: function(result) {
-            if(result.code != 'A0001'){
-                return true; //说明发生了业务错误
-            }else{
-                return false;
-            }
-            //也可扩展额外的处理，比如对于未登录的处理
+            // if(result.code != 'A0001'){
+            //     return true; //说明发生了业务错误
+            // }else{
+            //     return false;
+            // }
+            return false;
         }
     },
 
@@ -74,13 +70,15 @@ that.ioparams = {
      */
     error: function(error){
         //error或有或无 error.message
-        Alert.alert('系统消息',error.message || '亲，忙不过来了');
+        //Alert.alert('系统消息',error.message || '亲，忙不过来了');
     },
     /**
      * 如果fail配置了funname为fail,则调用此方法
      * @return {[type]} [description]
      */
-    fail: function(result,response){Alert.alert('系统消息',result.errmsg || '亲，忙不过来了');},
+    fail: function(result,response){
+        //Alert.alert('系统消息',result.errmsg || '亲，忙不过来了');
+    },
     success: function(result,response){},
     complete: function(){},
 
