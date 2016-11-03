@@ -29,6 +29,7 @@
 
          this.loading = false;
          this.listsuccess = false; //list渲染是否成功
+
          this.state = {
              ds: ds,
              refreshing: false, //是否显示下拉刷新指示器
@@ -40,13 +41,7 @@
          this.initdata();
      }
      initdata() {
-         if(this._data == undefined){
-             this._data = {};
-         }else{
-            //  for(var sectionId in this._data){
-            //      delete this._data[sectionId];
-            //  }
-         }
+         this._data = {};
          this.rowIndex = 0;
          this.sectionIndex = 0;
          this.imgrender = {};
@@ -59,9 +54,9 @@
       */
      onDataArrived(data) {
          this._data['section'+this.sectionIndex] = data;
+         this.updateDS();
          //this._data = this._data.concat(data);
          this.sectionIndex++;
-         this.updateDS();
      }
      updateDS(data) {
          if(data){
@@ -93,14 +88,12 @@
              return;
          }
          this.loading = true;
-         console.log('getdata');
          Model.listdata({
              data: {
                  username: 'zmr',
                  sex: '女'
              },
              success: function(list){
-                 console.log(list);
                  this.onDataArrived(list);
                  this.listsuccess = true;
              }.bind(this),
@@ -109,7 +102,6 @@
                      refreshing: false,
                      endloading: false
                  };
-                 this.setState(nowstate);
                  if(!this.state.firstRender){
                      nowstate.firstRender = true;
                  }

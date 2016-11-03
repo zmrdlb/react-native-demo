@@ -60,7 +60,7 @@ export default {
             })
         ]);
         race.then(function(response){
-            if(response.ok) {
+            if(response.ok) { 
                 response[conf.type]().then(function(result){
                     if(conf.dealfail){ //处理业务错误
                         if(IoConfig.fail.filter(result)){ //有业务错误发生
