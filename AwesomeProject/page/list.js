@@ -265,6 +265,11 @@
      componentDidMount(){
          this.getData();
      }
+
+     //控制不要重复渲染
+     shouldComponentUpdate(nextProps,nextState){
+         return !(nextProps.viewrender === false);
+     }
  }
 
  const styles = StyleSheet.create({
