@@ -27,6 +27,7 @@ export default class Home extends Component {
         };
     }
     render() {
+        console.log('home render');
         const gstyle = this.props.globalstyle;
         return (
               <View style={gstyle.layCenterCon}>
@@ -60,6 +61,7 @@ export default class Home extends Component {
 
     //控制不要重复渲染
     shouldComponentUpdate(nextProps,nextState){
+        console.log('home update ' + nextProps.viewrender);
         return nextProps.viewrender;
     }
 }

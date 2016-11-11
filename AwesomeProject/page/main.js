@@ -29,10 +29,13 @@ export default class Main extends Component {
         };
     }
     render() {
+        if(this.props.viewrender === false){
+            return null;
+        }
         const gstyle = this.props.globalstyle;
         return (
               <View style={{flex: 1}}>
-                  <Tabbar curtab="home" {...this.props} ></Tabbar>
+                  <Tabbar curtab="setting" {...this.props} ></Tabbar>
                   <BottomSelector ref="bottomSelector" navigator={this.props.navigator} itemclickCal={this.onSelectorItemClick.bind(this)} />
               </View>
         );

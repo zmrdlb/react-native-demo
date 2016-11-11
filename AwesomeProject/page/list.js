@@ -222,6 +222,7 @@
          }
      }
      render(){
+         console.log('list render');
          return (
              <View style={styles.container}>
                  <ListView style={styles.ListView}
@@ -263,11 +264,13 @@
          );
      }
      componentDidMount(){
+         console.log('list didmount');
          this.getData();
      }
 
      //控制不要重复渲染
      shouldComponentUpdate(nextProps,nextState){
+         console.log('list update ' + !(nextProps.viewrender === false));
          return !(nextProps.viewrender === false);
      }
  }
