@@ -39,7 +39,7 @@ Ioconfig.ioparams.fail = function(result,response){
 export default {
     //listdata接口
     listdata(opt){
-        Io.request(extend({
+        Io.request(extend(true,{
             request: {
                 method: 'POST'
             },
