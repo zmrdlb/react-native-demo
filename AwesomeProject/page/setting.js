@@ -10,8 +10,7 @@
    TextInput
  } from 'react-native';
 
- import VerifyInput from '../common/verify/verifyinput';
- import VerifyPassword from '../common/verify/verifypassword';
+const {VerifyInput,VerifyPassword} = require('react-native-form-verify');
 
  export default class Setting extends Component {
      constructor(props){

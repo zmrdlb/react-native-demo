@@ -7,10 +7,11 @@
     "test": "jest"
   },
   "dependencies": {
-    "react": "15.3.2",
-    "react-native": "0.37.0",
     "extend": "^3.0.0",
     "querystring": "^0.2.0",
+    "react": "15.3.2",
+    "react-native": "0.37.0",
+    "react-native-form-verify": "^1.0.1",
     "react-native-io-fetch": "^1.0.1",
     "react-native-tab-navigator": "^0.3.3"
   },
