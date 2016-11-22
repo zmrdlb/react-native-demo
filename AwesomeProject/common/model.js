@@ -1,5 +1,4 @@
-import Ioconfig from './ioconfig';
-import Io from '../common/io';
+const {IoConfig,Io} = require('react-native-io-fetch');
 const extend = require('extend');
 
 import {
@@ -9,7 +8,7 @@ import {
 /**
  * 设置自己的配置
  */
-Ioconfig.fail.filter = function(result){
+IoConfig.fail.filter = function(result){
     if(result.code != 'A0001'){
         return true; //说明发生了业务错误
     }else{
@@ -17,12 +16,12 @@ Ioconfig.fail.filter = function(result){
     }
 }
 
-Ioconfig.ioparams.error = function(error){
+IoConfig.ioparams.error = function(error){
     //error或有或无 error.message
     Alert.alert('系统消息',error.message || '亲，忙不过来了');
 }
 
-Ioconfig.ioparams.fail = function(result,response){
+IoConfig.ioparams.fail = function(result,response){
     if(result.code == 'A0002'){
         Alert.alert('系统消息','未登录');
     }else{
