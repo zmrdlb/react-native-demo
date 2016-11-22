@@ -2,7 +2,7 @@
  * TextInput 输入框属于验证类
  */
 const extend = require('extend');
- export default class VerifyInput {
+export default class VerifyInput {
      /**
       * @param *root: 数据验证的input节点
       * @param opts: 一些额外配置
@@ -85,4 +85,4 @@ const extend = require('extend');
          }
          return null;
      }
- }
+}
