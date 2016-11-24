@@ -35,7 +35,6 @@ const {VerifyString,VerifyPassword,VerifyNumber} = require('react-native-form-ve
                 <TextInput style={styles.input}
                     ref="username"
                     placeholder="姓名"
-                    maxLength={10}
                     selectionColor="#007eff"
                     autoFocus={true}
                     value={this.state.username}
