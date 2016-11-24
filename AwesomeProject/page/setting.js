@@ -10,14 +10,14 @@
    TextInput
  } from 'react-native';
 
-const {VerifyInput,VerifyPassword} = require('react-native-form-verify');
+const {VerifyString,VerifyPassword,VerifyNumber} = require('react-native-form-verify');
 
  export default class Setting extends Component {
      constructor(props){
          super(props);
          this.state = {
              username: '',
-             age: '20',
+             age: '10',
              password: '',
              errmsg: {
                  username: '',
@@ -63,12 +63,17 @@ const {VerifyInput,VerifyPassword} = require('react-native-form-verify');
                         this.setState({age})
                     }}
                     onEndEditing={(e) => { //当输入框失去焦掉，或者submit(点击enter)时调用
-                        //console.log('age end');
-                        //console.log(e.nativeEvent.text);
-                        //this._verify.age.verify();
+                        this._verifyresult('age');
                     }}
 
-
+                    required={true}
+                    isinteger={true}
+                    min={-1}
+                    max={10}
+                    //decimaldigits={2}
+                    errmsg={{
+                        typeerror: '此项必须是数字'
+                    }}
                 />
 
                 {this.state.errmsg.password != '' && <Text style={[styles.text,{color: 'red'}]}>{this.state.errmsg.password}</Text>}
@@ -107,11 +112,9 @@ const {VerifyInput,VerifyPassword} = require('react-native-form-verify');
 
      componentDidMount(){
          this._verify = {};
-         this._verify.username = new VerifyInput(this.refs.username);
+         this._verify.username = new VerifyString(this.refs.username);
          this._verify.password = new VerifyPassword(this.refs.password);
-        //  this._verify.age = new VerifyInput(this.refs.age,{
-        //      errnode: this.refs.errmsgAge
-        //  });
+         this._verify.age = new VerifyNumber(this.refs.age);
      }
      /**
       * verify
