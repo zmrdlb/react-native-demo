@@ -7,8 +7,10 @@
    View,
    Alert,
    Text,
-   TextInput
+   TextInput,
+   TouchableOpacity
  } from 'react-native';
+import PickBottom from '../ui/pickBottom';
 
 const {VerifyString,VerifyPassword,VerifyNumber} = require('react-native-form-verify');
 
@@ -19,6 +21,7 @@ const {VerifyString,VerifyPassword,VerifyNumber} = require('react-native-form-ve
              username: '',
              age: '10',
              password: '',
+             sex: 'woman',
              errmsg: {
                  username: '',
                  age: '',
@@ -40,7 +43,7 @@ const {VerifyString,VerifyPassword,VerifyNumber} = require('react-native-form-ve
                     value={this.state.username}
                     onChangeText={(username) => this.setState({username})}
                     onEndEditing={(e) => {
-                        this._verifyresult('username');
+                        //this._verifyresult('username');
                     }}
 
                     required={true}
@@ -62,7 +65,7 @@ const {VerifyString,VerifyPassword,VerifyNumber} = require('react-native-form-ve
                         this.setState({age})
                     }}
                     onEndEditing={(e) => { //当输入框失去焦掉，或者submit(点击enter)时调用
-                        this._verifyresult('age');
+                        //this._verifyresult('age');
                     }}
 
                     required={true}
@@ -94,12 +97,42 @@ const {VerifyString,VerifyPassword,VerifyNumber} = require('react-native-form-ve
                         this.setState({
                             password: e.nativeEvent.text
                         });
-                        this._verifyresult('password',e.nativeEvent.text);
+                        //this._verifyresult('password',e.nativeEvent.text);
                     }}
 
                     required={true}
                     minLength={6}
                 />
+
+                <TouchableOpacity
+                    style={[styles.opacityitem]}
+                    onPress={() => {
+                        this.refs.sex.toggle();
+                    }}
+                    >
+                        <Text style={styles.opacitytxt}>性别: {this.state.sex}</Text>
+                        <Text style={styles.arrow}>></Text>
+                </TouchableOpacity>
+                <PickBottom ref="sex"
+                    pickdata={{
+                        selectedValue: this.state.sex,
+                        list: [{
+                            label: '男',
+                            value: 'man'
+                        },{
+                            label: '女',
+                            value: 'woman'
+                        },{
+                            label: '其他',
+                            value: 'other'
+                        }]
+                    }}
+                    onValueChange={(sex) => {
+                        this.setState({sex});
+                    }}
+                >
+
+                </PickBottom>
              </View>
          );
      }
@@ -155,5 +188,20 @@ const styles = StyleSheet.create({
         borderWidth: 1,
         borderColor: 'gray',
         marginBottom: 20
+    },
+    opacitytxt: {
+        fontSize: 16,
+        lineHeight: 40,
+        flex: 1
+    },
+    opacityitem: {
+        borderBottomWidth: 1,
+        borderColor: 'gray',
+        marginBottom: 20,
+        flexDirection: 'row'
+    },
+    arrow: {
+        marginLeft: 10,
+        lineHeight: 40
     }
 });
