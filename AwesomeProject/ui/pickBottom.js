@@ -120,6 +120,7 @@ export default class PickBottom extends Component {
     },
     pick: {
         justifyContent: 'center',
-        maxHeight: 300
+        //maxHeight: 300
+        flex: 1
     }
  });

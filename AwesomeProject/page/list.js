@@ -91,7 +91,8 @@
          Model.listdata({
              data: {
                  username: 'zmr',
-                 sex: '女'
+                 sex: '女',
+                 agearr: [1,2,3]
              },
              success: function(list){
                  this.onDataArrived(list);

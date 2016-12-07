@@ -16,6 +16,8 @@ IoConfig.fail.filter = function(result){
     }
 }
 
+IoConfig.ioparams.isformdata = true;
+
 IoConfig.ioparams.error = function(error){
     //error或有或无 error.message
     Alert.alert('系统消息',error.message || '亲，忙不过来了');

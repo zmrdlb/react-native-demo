@@ -19,11 +19,13 @@ const {VerifyString,VerifyPassword,VerifyNumber} = require('react-native-form-ve
          super(props);
          this.state = {
              username: '',
+             email: '',
              age: '10',
              password: '',
              sex: 'woman',
              errmsg: {
                  username: '',
+                 email: '',
                  age: '',
                  password: ''
              }
@@ -54,6 +56,27 @@ const {VerifyString,VerifyPassword,VerifyNumber} = require('react-native-form-ve
                     }}
 
                 />
+
+                <Text style={styles.text}>email: {this.state.email}</Text>
+                {this.state.errmsg.email != '' && <Text style={[styles.text,{color: 'red'}]}>{this.state.errmsg.email}</Text>}
+                <TextInput style={styles.input}
+                    ref="email"
+                    placeholder="邮箱"
+                    selectionColor="#007eff"
+                    value={this.state.email}
+                    onChangeText={(email) => this.setState({email})}
+                    onEndEditing={(e) => {
+                        this._verifyresult('email');
+                    }}
+
+                    required={true}
+                    verifytype='email'
+                    errmsg={{
+                        verifytype: '邮箱格式不正确'
+                    }}
+
+                />
+
                 <Text style={styles.text}>age: {this.state.age}</Text>
                 {this.state.errmsg.age != '' && <Text style={[styles.text,{color: 'red'}]}>{this.state.errmsg.age}</Text>}
                 <TextInput style={styles.input}
@@ -145,6 +168,7 @@ const {VerifyString,VerifyPassword,VerifyNumber} = require('react-native-form-ve
      componentDidMount(){
          this._verify = {};
          this._verify.username = new VerifyString(this.refs.username);
+         this._verify.email = new VerifyString(this.refs.email);
          this._verify.password = new VerifyPassword(this.refs.password);
          this._verify.age = new VerifyNumber(this.refs.age);
      }

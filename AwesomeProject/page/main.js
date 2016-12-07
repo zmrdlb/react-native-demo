@@ -35,7 +35,7 @@ export default class Main extends Component {
         const gstyle = this.props.globalstyle;
         return (
               <View style={{flex: 1}}>
-                  <Tabbar curtab="setting" {...this.props} ></Tabbar>
+                  <Tabbar curtab="message" {...this.props} ></Tabbar>
                   <BottomSelector ref="bottomSelector" navigator={this.props.navigator} itemclickCal={this.onSelectorItemClick.bind(this)} />
               </View>
         );
